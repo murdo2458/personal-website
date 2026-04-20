@@ -7,14 +7,15 @@ const STRAPLINE = "startups -> scaleups -> enterprise";
 const MONO_STACK =
   'Monaco, "Menlo", "Consolas", "Courier New", monospace';
 
-// The rocket passes through the middle of the viewport at ~t=2.5s,
-// where the burst flash fires. Every reveal here is pinned to that moment
-// so the name + strapline appear to radiate out of the rocket's burst.
-const BURST_START = 2.5;
+// The rocket passes through the middle of the viewport at ~t=3.96s
+// (keyframe y=-360 at 0.55 of its 7.2s flight), where the burst flash fires.
+// Every reveal here is pinned to that moment so the name + strapline appear
+// to radiate out of the rocket's burst.
+const BURST_START = 3.96;
 
 // Each letter's delay = BURST_START + (distance from center) * STEP,
 // so center letters appear first and outer letters ripple outward.
-const LETTER_STEP = 0.055;
+const LETTER_STEP = 0.066;
 const CENTER_INDEX = (NAME.length - 1) / 2;
 
 const letterReveal: Variants = {
@@ -25,7 +26,7 @@ const letterReveal: Variants = {
     y: 0,
     transition: {
       delay: BURST_START + Math.abs(i - CENTER_INDEX) * LETTER_STEP,
-      duration: 0.55,
+      duration: 0.66,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -68,8 +69,8 @@ export default function NameReveal() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: BURST_START + 0.75,
-          duration: 0.8,
+          delay: BURST_START + 0.9,
+          duration: 0.96,
           ease: [0.22, 1, 0.36, 1],
         }}
         className="mt-4 text-white/60"
